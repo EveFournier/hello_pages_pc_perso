@@ -1,0 +1,35 @@
+---
+title : "My second better page"
+--- 
+
+
+```{r}
+library(reactable)
+pacman::p_load(tidyverse,
+               gapminder,
+               reactable)
+```
+
+```{r}
+reactable(gapminder)
+```
+
+```{r}
+gap_mini<-filter(gapminder,
+                 country %in% c("United States",
+                                "Australia",
+                                "Germany"))
+ggplot(data=gap_mini,
+       mapping=aes(x=year,
+                   y=lifeExp,
+                   group=country,
+                   color=country))+
+  geom_line()+
+  labs(title="Life expectancy evolution",
+       x="Year",
+       y="Life expectancy",
+       color="Countries")+
+  theme_minimal()+
+  scale_y_continuous(breaks=seq(from=60, to=85, by=5))
+```
+
